@@ -27,14 +27,14 @@ public class BaseLogin {
         driver.manage().deleteAllCookies();
         driver.get(BaseConfig.getconfig("URL"));
         
-    //    driver.findElement(By.xpath("(//*[@type='button'])[2] ")).click(); //  This will Click the Accept Cookies
-        
         LoginPage login =new LoginPage(driver);
         login.getCookies().click();
         System.out.println(driver.getTitle());
-        // highlight and take the screenshot
         
-        login.getLogin().click();// click
+        new TakeAppScreenShot();
+		TakeAppScreenShot.captureScreenShot(driver, "Login Page");
+        
+        login.getLogin().click();
 		System.out.println(driver.getCurrentUrl());
 		System.out.println(driver.getTitle());
 		
@@ -42,17 +42,22 @@ public class BaseLogin {
 		new Highlighter().getcolor(driver, login.getEmail(), "yellow");
 		login.getEmail().sendKeys(BaseConfig.getconfig("email"));
 		
-	//	login.getSubmit().click();
+		new TakeAppScreenShot();
+		TakeAppScreenShot.captureScreenShot(driver, "Val Login Page");
 		
 		new Highlighter().getcolor(driver, login.getPass(),"red");
 		login.getPass().sendKeys(BaseConfig.getconfig("pass"));
-		
 		Thread.sleep(3000);
-		new TakeAppScreenShot().captureScreenShot(driver, "Val Login Page");	
-	login.getSubmit().click();
+		
+		new TakeAppScreenShot();
+		TakeAppScreenShot.captureScreenShot(driver, "Val Login Page");	
+		
+	    login.getSubmit().click();
 		
 	System.out.println(driver.getTitle());
-	new TakeAppScreenShot().captureScreenShot(driver, "Val Home Page");
+	    new TakeAppScreenShot();
+		TakeAppScreenShot.captureScreenShot(driver, "Val Home Page");
+	    
 		driver.quit();
 		
 	}

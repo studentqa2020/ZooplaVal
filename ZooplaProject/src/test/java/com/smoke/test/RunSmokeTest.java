@@ -2,7 +2,6 @@ package com.smoke.test;
 
 import ZooplaAssignment.BaseLogin;
 
-//import com.generic.code.BaseLogin;
 
 public class RunSmokeTest {
 	
